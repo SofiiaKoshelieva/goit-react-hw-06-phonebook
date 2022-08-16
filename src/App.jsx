@@ -1,8 +1,9 @@
 import Phonebook from './components/Phonebook';
-export const App = () => {
+
+export const App = store => {
   return (
     <div>
-      <Phonebook />
+      <Phonebook store={store} />
     </div>
   );
 };

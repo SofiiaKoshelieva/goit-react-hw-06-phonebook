@@ -1,8 +1,15 @@
 import s from './Phonebook.module.css';
-const ContactList = ({ contacts, deleteContacts }) => {
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/actions';
+const ContactList = ({ contacts, filter }) => {
+  const dispatch = useDispatch();
+  const delContact = id => dispatch(deleteContact(id));
+  const filtered = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter)
+  );
   return (
     <ul>
-      {contacts.map(contact => {
+      {filtered.map(contact => {
         return (
           <li className={s.li} key={contact.id}>
             {contact.name} : {contact.number}
@@ -10,7 +17,7 @@ const ContactList = ({ contacts, deleteContacts }) => {
               className={s.button}
               type="button"
               onClick={() => {
-                deleteContacts(contact.id);
+                delContact(contact.id);
               }}
             >
               Delete

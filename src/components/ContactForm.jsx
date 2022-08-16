@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import s from './Phonebook.module.css';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/actions';
+import { nanoid } from 'nanoid';
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
   function onNameChange(e) {
     setName(e.currentTarget.value);
   }
@@ -11,9 +15,12 @@ export default function ContactForm({ onSubmit }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(name, number);
+    newContact(name, number);
     e.target.reset();
   }
+  const newContact = (name, number) =>
+    dispatch(addContact({ id: nanoid(), name, number }));
+
   return (
     <form onSubmit={handleSubmit}>
       <fieldset className={s.fieldset}>
