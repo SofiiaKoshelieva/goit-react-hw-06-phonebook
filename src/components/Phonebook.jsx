@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
+
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import { number } from 'prop-types';
-import * as actions from '../redux/actions';
-import { connect, useSelector } from 'react-redux';
+
+// import * as actions from '../redux/actions';
+import { useSelector } from 'react-redux';
 
 function Phonebook() {
   const contacts = useSelector(state => state.reducer.contacts);
