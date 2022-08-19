@@ -3,7 +3,7 @@ import s from './Phonebook.module.css';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/actions';
 import { nanoid } from 'nanoid';
-export default function ContactForm({ onSubmit }) {
+export default function ContactForm({ contacts }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
@@ -15,6 +15,11 @@ export default function ContactForm({ onSubmit }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    let isNameAlreadyExists = contacts.find(element => element.name === name);
+    if (isNameAlreadyExists) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
     newContact(name, number);
     e.target.reset();
   }

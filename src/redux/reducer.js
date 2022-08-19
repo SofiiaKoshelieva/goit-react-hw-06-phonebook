@@ -16,18 +16,10 @@ export const reducer = createReducer(
   { contacts: initialState, filter: '' },
   {
     [addContact]: (state, action) => {
-      let isNameAlreadyExists = state.contacts.find(
-        element => element.name === action.payload.name
-      );
-      if (isNameAlreadyExists) {
-        alert(`${action.payload.name} is already in contacts`);
-        return;
-      } else {
-        return {
-          contacts: state.contacts.concat(action.payload),
-          filter: state.filter,
-        };
-      }
+      return {
+        contacts: state.contacts.concat(action.payload),
+        filter: state.filter,
+      };
     },
     [deleteContact]: (state, action) => {
       return {

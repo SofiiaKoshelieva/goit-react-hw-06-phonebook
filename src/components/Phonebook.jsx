@@ -17,7 +17,7 @@ function Phonebook() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm contacts={contacts} />
       <h2>Contacts</h2>
       <ContactList contacts={contacts} filter={filter} />
       <Filter value={filter} />
